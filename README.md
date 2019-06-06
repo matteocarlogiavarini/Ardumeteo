@@ -20,5 +20,14 @@ Ho scelto di utilizzare due dispositivi per sottolineare la possibilità di aver
 
 ## Links:
 
+- Home Assistant - https://www.home-assistant.io/
 - MQTT - http://mqtt.org/
 - PubSubClient (MQTT) - https://pubsubclient.knolleary.net/
+- SPI (Ehternet shiled) - https://www.arduino.cc/en/Reference/SPI
+- Ehternet - https://www.arduino.cc/en/Reference/Ethernet
+- Wire (I2C per bmp180) - https://www.arduino.cc/en/Reference/Wire
+- DHT11 - https://github.com/beegee-tokyo/DHTesp
+- WiFi -https://www.arduino.cc/en/Reference/WiFi
+- BMP 180 - https://github.com/adafruit/Adafruit_BMP085_Unified
+- TaskScheduler - https://github.com/arkhipenko/TaskScheduler
+- LiquidCrystal - https://www.arduino.cc/en/Reference/LiquidCrystal
