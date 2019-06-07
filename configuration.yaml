@@ -1,0 +1,100 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 45.4707
+  longitude: 9.1889
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Rome
+  # Customization file
+  customize: !include customize.yaml
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+# Discover some devices automatically
+discovery:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+#lovelace:
+#  mode: yaml
+
+mqtt:
+  broker: 127.0.0.1
+  port: 1883
+  client_id: home-assistant-1
+  username: matgiav
+  password: supp
+
+sensor: 
+  
+  - platform: mqtt
+    state_topic: 'sensor/potenziometro'
+    name: 'Potenziometro'
+    
+  - platform: mqtt
+    state_topic: 'sensor/temperaturaDHT11'
+    name: 'Temperatura DHT11'
+    unit_of_measurement: '°c'
+  
+  - platform: mqtt
+    state_topic: 'sensor/temperaturaBMP180'
+    name: 'Temperatura BMP180'
+    unit_of_measurement: '°c'
+  
+  - platform: mqtt
+    state_topic: 'sensor/temperaturaMedia'
+    name: 'Temperatura media'
+    unit_of_measurement: '°c'
+
+  - platform: mqtt
+    state_topic: 'sensor/umidita'
+    name: 'Umidità'
+    unit_of_measurement: '%'
+
+  - platform: mqtt
+    state_topic: 'sensor/luminosita'
+    name: 'Luminosità'
+    unit_of_measurement: '/4095'
+
+  - platform: mqtt
+    state_topic: 'sensor/pressione'
+    name: 'Pressione'
+    unit_of_measurement: 'Pa'
+
+  - platform: mqtt
+    state_topic: 'sensor/altitudine'
+    name: 'Altitudine'
+    unit_of_measurement: 'm'
+
+
+switch:
+  - platform: mqtt
+    name: "Regolazione luci automatico"
+    command_topic: "command/luciAutomatiche"
+    payload_on: "on"
+    payload_off: "off"
+    state_on: "on"
+    state_off: "off"
+
+input_number:
+  tempolettura:
+    name: Periodo lettura sensori
+    initial: 5
+    min: 1
+    max: 60
+    step: 1
+    mode: box

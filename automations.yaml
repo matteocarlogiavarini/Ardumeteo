@@ -1,0 +1,58 @@
+- id: '1558115689164'
+  alias: AggiornaLucePotenziometro
+  trigger:
+  - entity_id: sensor.potenziometro
+    platform: state
+  - platform: mqtt
+    topic: stazioni/inizializzazione
+  - entity_id: switch.regolazione_luci_automatico
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      payload_template: '{{ states.sensor.potenziometro.state }}'
+      topic: command/potenziometro
+    service: mqtt.publish
+- id: '1558115689165'
+  alias: AggiornamentoLuce
+  trigger:
+  - platform: mqtt
+    topic: sensor/luminosita
+  - platform: mqtt
+    topic: stazioni/inizializzazione
+  - entity_id: switch.regolazione_luci_automatico
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      payload_template: '{{ states.sensor.luminosita.state }}'
+      topic: command/luce
+    service: mqtt.publish
+- id: '1558693973014'
+  alias: InizializzazioneSwitchLuce
+  trigger:
+  - platform: mqtt
+    topic: stazioni/inizializzazione
+  condition: []
+  action:
+  - data:
+      payload_template: '{{ states.switch.regolazione_luci_automatico.state }}'
+      topic: command/luciAutomatiche
+    service: mqtt.publish
+- id: '1559832852297'
+  alias: PeriodoLetturaSensori
+  trigger:
+  - entity_id: input_number.tempolettura
+    platform: state
+  - platform: mqtt
+    topic: stazioni/inizializzazione
+  condition: []
+  action:
+  - data:
+      payload_template: '{{ states.input_number.tempolettura.state }}'
+      topic: command/periodoLetturaSensori
+    service: mqtt.publish
