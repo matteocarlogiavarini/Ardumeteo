@@ -13,8 +13,8 @@ Ho scelto di utilizzare due dispositivi per sottolineare la possibilità di aver
 - Sunfounder UNO con Ethernet Shield
 - Sensore temperatura ed umidità DHT11
 - Senosre temperatura, pressione ed altitudine BMP180
-- Fotoresistenza con resistenza da 2.2K
-- Dislpay LCD 16x2 con resistenza da 2.2K
+- Fotoresistenza con resistenza da 110 ohms
+- Dislpay LCD 16x2 con resistenza da 220 ohms
 - 2 diodi led
 - Potenziometro 50K
 
